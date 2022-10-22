@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    opencsv
+}
+
+dependencies {
+    opencsv 'com.opencsv:opencsv:5.7.0'
+    implementation configurations.opencsv.dependencies
+}
