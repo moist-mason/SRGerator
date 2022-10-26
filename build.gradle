@@ -17,3 +17,15 @@ dependencies {
     opencsv 'com.opencsv:opencsv:5.7.0'
     implementation configurations.opencsv.dependencies
 }
+
+task fixRGS(type: JavaExec) {
+    main = "com.entropy.rcp.srgerator.SRGerator"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task convertToSRG(type: JavaExec) {
+    main = "uk.jamierocks.rgs2srg.Main"
+    classpath = files("lib\\rgs2srg-1.0-SNAPSHOT.jar")
+    args("-i", "src\\main\\resources\\a1.2.6.rgs", "-o", "src\\main\\resources\\a1.2.6.srg")
+
+}

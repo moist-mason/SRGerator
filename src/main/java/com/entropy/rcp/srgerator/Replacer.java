@@ -1,4 +1,4 @@
-package com.entropy.internal;
+package com.entropy.rcp.srgerator;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
@@ -7,7 +7,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.*;
 import java.util.Scanner;
 
-public class SRGReplacer {
+public class Replacer {
     public static CSVReader csvReader;
     private static String[] nextLine;
     public static int rowNumber = 0;

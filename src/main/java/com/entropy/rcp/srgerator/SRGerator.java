@@ -1,6 +1,6 @@
 
 
-package com.entropy.internal;
+package com.entropy.rcp.srgerator;
 
 import com.opencsv.exceptions.CsvValidationException;
 
@@ -11,7 +11,8 @@ import java.nio.file.StandardCopyOption;
 public class SRGerator {
     public static final String MC_VERSION = "a1.2.6";
     public static final File rgsScript = new File("src\\main\\resources\\" + MC_VERSION + ".rgs");
-    public static final File patchFile = new File("src\\main\\resources\\" + "minecraft.patch");
+    public static final File srgScript = new File("src\\main\\resources\\" + MC_VERSION + ".srg");
+
     public static final FileReader fields;
     public static final FileReader methods;
 
@@ -35,25 +36,15 @@ public class SRGerator {
             generateRGSCopy();
         }
         fixFiles(rgsScript);
-
-        if(!patchFile.exists()) {
-            generatePatchCopy();
-        }
-        fixFiles(patchFile);
     }
 
     public static void fixFiles(File script) throws CsvValidationException, IOException {
-        SRGReplacer.replacer(script, fields);
-        SRGReplacer.replacer(script, methods);
+        Replacer.replacer(script, fields);
+        Replacer.replacer(script, methods);
     }
 
     public static void generateRGSCopy() throws IOException {
         File input = new File("src\\main\\resources\\" + MC_VERSION + "-base.rgs");
         Files.copy(input.getAbsoluteFile().toPath(), rgsScript.getAbsoluteFile().toPath(), StandardCopyOption.REPLACE_EXISTING);
-    }
-
-    public static void generatePatchCopy() throws IOException {
-        File input = new File("src\\main\\resources\\" + "minecraft-base.patch");
-        Files.copy(input.getAbsoluteFile().toPath(), patchFile.getAbsoluteFile().toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
 }
